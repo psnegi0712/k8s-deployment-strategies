@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app
+  name: my-app01
   labels:
-    app: my-app
+    app: my-app01
 spec:
   type: NodePort
   ports:
@@ -16,11 +16,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: my-app01
   labels:
-    app: my-app
+    app: my-app01
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: my-app
@@ -33,13 +33,13 @@ spec:
     metadata:
       labels:
         app: my-app
-        version: v1.0.0
+        version: v1.0.1
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9101"
     spec:
       containers:
-      - name: my-app
+      - name: my-app01
         image: containersol/k8s-deployment-strategies
         # In case you want to use locally built images, use this:
         #imagePullPolicy: Never
